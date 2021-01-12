@@ -1,0 +1,29 @@
+# Import os module
+import os
+
+# Module for reading data file
+import csv
+csvpath = os.path.join('.','Resources', 'budget_data.csv')
+
+# Set output file
+text_path = "Analysis.txt" 
+
+# Declare variables
+total_months = []
+total_profit = []
+profit_change = []
+
+# Reading using csv module
+with open(csvpath) as csvfile:
+  #specify delimiter and variable holding contents
+  csvreader = csv.reader(csvfile, delimiter=",")
+ 
+  # Skip header
+  header = next(csvreader)
+
+  # Loop through to find total months
+  for row in csvreader:
+    total_months.append(row)
+  print(row)
+
+
