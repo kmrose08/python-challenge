@@ -9,9 +9,11 @@ csvpath = os.path.join('.','Resources', 'budget_data.csv')
 text_path = "Analysis.txt" 
 
 # Declare variables
-total_months = []
-total_profit = []
-profit_change = []
+months = 0
+total = 0
+total_ch = 0
+prev_rev = 0
+inc = ['',0]
 
 # Reading using csv module
 with open(csvpath) as csvfile:
@@ -22,26 +24,38 @@ with open(csvpath) as csvfile:
   header = next(csvreader)
 
   # Loop through to find total months
-  for row in csvreader:
-    total_months.append(row[0])
-    total_profit.append(row[1])
+  for i,row in enumerate(csvreader):
+    rev = int(row[1])
+    months += 1
+    total += rev
+
+    change = rev - prev_rev
+    if i == 0:
+      change = 0
+    total_ch += change
+    prev_rev = rev
+
+    if change > inc[1]:
+      inc[0] = row[0]
+      inc[1] = change
 
   # Loop through profits 
-  for i in range(len(total_profit)-1):
 
   # Calculate profit difference and add to profit change
-    profit_change.append(int((total_profit[i+1]))-(int(total_profit[i])))
+
+  # max_increase = max(profit_change)
+  # max_decrease = min(profit_change)
 
 
   # Find greatest increase in profits
-  greatest_increase_profits = profit_change.index(max(profit_change))
+  # greatest_increase_profits = profit_change.index(max(profit_change))
 
-  print(greatest_increase_profits)
+  # print(greatest_increase_profits)
   
   # Find greatest decrease in losses
-  greatest_decrease_losses = profit_change.index(min(profit_change))
+  # greatest_decrease_losses = profit_change.index(min(profit_change))
   
-  print(greatest_decrease_losses)
+  # print(greatest_decrease_losses)
 
  # profit_average = float(profit_change) / float(total_months)
 # Set variable for output file
@@ -51,10 +65,22 @@ with open(csvpath) as csvfile:
 #with open(output_file, "w", newline="") as datafile:
     #writer = csv.writer(datafile)
 
+#total_profit = int(total_profit)
+#greatest_increase_profits = int(greatest_increase_profits)
+
+
+
 print("Financial Analysis")
 print("-------------")
-#print('Total Months: ' + total_months)
-#print('Total: ' + profit_change)
-# print('Average Change' + profit_average)
-#print('Greatest Increase in Profits: ' + greatest_increase_profits)
-#print('Greatest Decrease in Profits: ' + greatest_decrease_losses)
+print(f"Total Months: {months}")
+print(f"Total: ${total:,}")
+print(f"Average Change: {total_ch/(months-1):,.2f}")
+print(f"Greatest Increase in Profits: {inc[0]} (${inc[1]:,})")
+#print(f"Greatest Decrease in Profits: Sep-2013 ($-2196167)")
+
+
+# Output file
+#output_file = Path(")
+
+#with open(output_file,"w") as file:
+    
