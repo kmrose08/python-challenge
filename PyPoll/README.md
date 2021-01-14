@@ -1,6 +1,6 @@
 # python-challenge
 
-Created a Python script to help a small, rural town modernize its vote counting process by analyzing the votes and calculating each of the following:
+Gaol: Create a Python script to help a small, rural town modernize its vote counting process by analyzing the votes and calculating each of the following:
 
   * The total number of votes cast
 
@@ -12,4 +12,4 @@ Created a Python script to help a small, rural town modernize its vote counting 
 
   * The winner of the election based on popular vote.
 
-Final script prints the analysis to the terminal and exports a text file with the results.
+Final script intended to print the analysis to the terminal and exports a text file with the results.
